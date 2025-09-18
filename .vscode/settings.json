@@ -1,0 +1,12 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "testing.automaticallyOpenPeekView": "never",
+  "testing.followRunningTest": false,
+  "testing.gutterEnabled": true,
+  "testing.openTesting": "neverOpen",
+  "playwright.env": {},
+  "playwright.reuseBrowser": true
+}

@@ -1,0 +1,22 @@
+{
+  "name": "playwright-typescript",
+  "version": "1.0.0",
+  "description": "Playground for Playwright and Typescript testing automation",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report",
+    "debug": "playwright test --debug"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "@types/node": "^24.5.2",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.2"
+  }
+}
