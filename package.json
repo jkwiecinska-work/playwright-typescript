@@ -2,21 +2,31 @@
   "name": "playwright-typescript",
   "version": "1.0.0",
   "description": "Playground for Playwright and Typescript testing automation",
-  "main": "index.js",
   "scripts": {
     "test": "playwright test",
     "test:headed": "playwright test --headed",
     "test:ui": "playwright test --ui",
     "report": "playwright show-report",
-    "debug": "playwright test --debug"
+    "debug": "playwright test --debug",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": ">=24"
+  },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.55.0",
     "@types/node": "^24.5.2",
+    "eslint": "^10.7.0",
+    "eslint-plugin-playwright": "^2.10.5",
     "prettier": "^3.6.2",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.65.0"
   }
 }
