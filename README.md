@@ -13,12 +13,13 @@ Playground for Playwright and TypeScript testing automation
 
 ## Tech Stack
 
+- **Node.js**: >= 24
 - [Playwright](https://playwright.dev/) (TypeScript)
 - Page Object Model (POM) with Base Page inheritance
 - Custom Fixtures for dependency injection
 - [ESLint](https://eslint.org/) with [eslint-plugin-playwright](https://github.com/playwright-community/eslint-plugin-playwright)
 - [Prettier](https://prettier.io/) for code formatting
-- CI/CD with GitHub Actions
+- CI/CD with GitHub Actions (Test, Lint, Typecheck, Deploy HTML Report to GitHub Pages)
 - Trace reporting on first retry
 
 ---
@@ -96,5 +97,6 @@ Playground for Playwright and TypeScript testing automation
 - **Stateless tests:** Independent cases, easy parallelization
 - **Artifacts on fail:** Automatic trace on first retry
 - **CI-friendly:** GitHub Actions pipeline with lint, typecheck & test stages
+- **Automated Reporting:** Playwright HTML report is automatically deployed to GitHub Pages from the `main` branch
 
 ---

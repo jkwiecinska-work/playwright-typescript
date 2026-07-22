@@ -42,11 +42,16 @@ jobs:
       - name: Run Playwright tests
         run: npm test
 
+      - name: Generate timestamp for artifact
+        id: timestamp
+        if: always()
+        run: echo "time=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_OUTPUT
+
       - name: Upload test results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report
+          name: playwright-report-${{ steps.timestamp.outputs.time }}
           path: playwright-report/
           retention-days: 30
 
