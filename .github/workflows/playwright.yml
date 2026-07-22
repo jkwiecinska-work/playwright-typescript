@@ -6,7 +6,6 @@ on:
   pull_request:
     branches: [main, develop]
 
-# Uprawnienia wymagane do wdrożenia na GitHub Pages
 permissions:
   contents: read
   pages: write
@@ -43,7 +42,6 @@ jobs:
       - name: Run Playwright tests
         run: npm test
 
-      # Tradycyjny artefakt ZIP (zmieniony na always, żeby był zawsze dostępny)
       - name: Upload test results
         if: always()
         uses: actions/upload-artifact@v4
@@ -52,21 +50,19 @@ jobs:
           path: playwright-report/
           retention-days: 30
 
-      # Nowy krok: Przygotowanie raportu do publikacji na stronach GitHuba
       - name: Upload GitHub Pages artifact
         if: always()
         uses: actions/upload-pages-artifact@v3
         with:
           path: playwright-report/
 
-  # Nowy job: Publikacja na GitHub Pages
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: test
-    if: always()
+    if: always() && github.ref == 'refs/heads/main'
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
