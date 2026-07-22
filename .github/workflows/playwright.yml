@@ -2,7 +2,7 @@ name: Playwright Tests
 
 on:
   push:
-    branches-ignore: [dependabot/**]
+    branches: [main, develop]
   pull_request:
     branches: [main, develop]
 
@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   test:
-    timeout-minutes: 60
+    timeout-minutes: 10
     runs-on: ubuntu-latest
 
     steps:
@@ -56,7 +56,7 @@ jobs:
           retention-days: 30
 
       - name: Upload GitHub Pages artifact
-        if: always()
+        if: always() && github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3
         with:
           path: playwright-report/
