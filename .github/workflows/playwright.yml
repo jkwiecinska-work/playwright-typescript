@@ -2,7 +2,7 @@ name: Playwright Tests
 
 on:
   push:
-    branches: [main, develop]
+    branches-ignore: [dependabot/**]
   pull_request:
     branches: [main, develop]
 
@@ -21,6 +21,15 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Run TypeScript type check
+        run: npm run typecheck
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Check Prettier formatting
+        run: npm run format:check
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
