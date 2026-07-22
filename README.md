@@ -25,6 +25,7 @@ Playground for Playwright and TypeScript testing automation
 ---
 
 ## Project Structure
+
 ```
 ├── tests/ # tests (organized by features/modules)
 │ ├── demo-todo-app.spec.ts
@@ -42,6 +43,7 @@ Playground for Playwright and TypeScript testing automation
 └── tsconfig.json
 
 ```
+
 ---
 
 ## How to Run Locally
@@ -49,13 +51,13 @@ Playground for Playwright and TypeScript testing automation
 1. Clone this repo:
 
 2. Install dependencies:
-npm install
+   npm install
 
 3. Run test suite:
-npx playwright test
+   npx playwright test
 
 4. Open the HTML test report:
-npx playwright show-report
+   npx playwright show-report
 
 ---
 
