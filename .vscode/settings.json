@@ -8,5 +8,6 @@
   "testing.gutterEnabled": true,
   "testing.openTesting": "neverOpen",
   "playwright.env": {},
-  "playwright.reuseBrowser": true
+  "playwright.reuseBrowser": true,
+  "testing.automaticallyOpenTestResults": "neverOpen"
 }
