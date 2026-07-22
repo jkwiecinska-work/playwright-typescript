@@ -79,4 +79,3 @@ export class LoginPage extends BasePage {
     await expect(this.page).toHaveURL("https://www.saucedemo.com/");
   }
 }
-

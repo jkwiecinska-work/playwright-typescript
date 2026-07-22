@@ -12,4 +12,3 @@
   "include": ["tests/**/*", "pages/**/*", "fixtures/**/*", "playwright.config.ts"],
   "exclude": ["node_modules"]
 }
-

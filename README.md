@@ -46,18 +46,21 @@ Playground for Playwright and TypeScript testing automation
 ## How to Run Locally
 
 1. Clone this repo:
+
    ```bash
    git clone https://github.com/jkwiecinska-work/playwright-typescript.git
    cd playwright-typescript
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    npx playwright install --with-deps
    ```
 
 3. Run test suite:
+
    ```bash
    npm test
    ```
@@ -71,16 +74,16 @@ Playground for Playwright and TypeScript testing automation
 
 ## Available Scripts
 
-| Script              | Command                         | Description                        |
-| ------------------- | ------------------------------- | ---------------------------------- |
-| `npm test`          | `playwright test`               | Run all tests                      |
-| `npm run test:headed` | `playwright test --headed`    | Run tests with visible browser     |
-| `npm run test:ui`   | `playwright test --ui`          | Open Playwright UI mode            |
-| `npm run debug`     | `playwright test --debug`       | Debug tests step by step           |
-| `npm run report`    | `playwright show-report`        | Open HTML test report              |
-| `npm run lint`      | `eslint .`                      | Run ESLint checks                  |
-| `npm run format`    | `prettier --write .`            | Format code with Prettier          |
-| `npm run typecheck` | `tsc --noEmit`                  | TypeScript type checking           |
+| Script                | Command                    | Description                    |
+| --------------------- | -------------------------- | ------------------------------ |
+| `npm test`            | `playwright test`          | Run all tests                  |
+| `npm run test:headed` | `playwright test --headed` | Run tests with visible browser |
+| `npm run test:ui`     | `playwright test --ui`     | Open Playwright UI mode        |
+| `npm run debug`       | `playwright test --debug`  | Debug tests step by step       |
+| `npm run report`      | `playwright show-report`   | Open HTML test report          |
+| `npm run lint`        | `eslint .`                 | Run ESLint checks              |
+| `npm run format`      | `prettier --write .`       | Format code with Prettier      |
+| `npm run typecheck`   | `tsc --noEmit`             | TypeScript type checking       |
 
 ---
 
