@@ -25,66 +25,37 @@ Playground for Playwright and TypeScript testing automation
 ---
 
 ## Project Structure
-
 ```
-├── tests/                    # Test specs organized by feature
-│   └── login.spec.ts         # SauceDemo login scenarios
-├── pages/                    # Page Object Model classes
-│   ├── base.page.ts          # Base page with shared methods
-│   └── login.page.ts         # Login page selectors & actions
-├── fixtures/                 # Custom Playwright fixtures
-│   └── base.fixtures.ts      # Page object injection for tests
+├── tests/ # tests (organized by features/modules)
+│ ├── demo-todo-app.spec.ts
+│ └── example.spec.ts
+├── [to do] pages/ # Page Object Model - [to do] page logic, selectors, actions
+│ └── LoginPage.ts
+├── [to do] fixtures/ # Custom reusable fixtures (login, data, tokens, setup)
+├── [to do]utils/ # Helpers, data generators, custom assertions
 ├── playwright.config.ts
 ├── eslint.config.mjs
 ├── .prettierrc
 ├── tsconfig.json
 ├── package.json
-└── README.md
-```
+├── README.md
+└── tsconfig.json
 
+```
 ---
 
 ## How to Run Locally
 
 1. Clone this repo:
 
-   ```bash
-   git clone https://github.com/jkwiecinska-work/playwright-typescript.git
-   cd playwright-typescript
-   ```
-
 2. Install dependencies:
-
-   ```bash
-   npm install
-   npx playwright install --with-deps
-   ```
+npm install
 
 3. Run test suite:
-
-   ```bash
-   npm test
-   ```
+npx playwright test
 
 4. Open the HTML test report:
-   ```bash
-   npm run report
-   ```
-
----
-
-## Available Scripts
-
-| Script                | Command                    | Description                    |
-| --------------------- | -------------------------- | ------------------------------ |
-| `npm test`            | `playwright test`          | Run all tests                  |
-| `npm run test:headed` | `playwright test --headed` | Run tests with visible browser |
-| `npm run test:ui`     | `playwright test --ui`     | Open Playwright UI mode        |
-| `npm run debug`       | `playwright test --debug`  | Debug tests step by step       |
-| `npm run report`      | `playwright show-report`   | Open HTML test report          |
-| `npm run lint`        | `eslint .`                 | Run ESLint checks              |
-| `npm run format`      | `prettier --write .`       | Format code with Prettier      |
-| `npm run typecheck`   | `tsc --noEmit`             | TypeScript type checking       |
+npx playwright show-report
 
 ---
 
