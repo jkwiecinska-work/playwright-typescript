@@ -4,6 +4,14 @@
   "description": "Playground for Playwright and Typescript testing automation",
   "scripts": {
     "test": "playwright test",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:e2e": "playwright test tests/e2e/purchase-flow.spec.ts",
+    "test:a11y": "playwright test tests/non-functional/accessibility.spec.ts",
+    "test:network": "playwright test tests/non-functional/network-resilience.spec.ts",
+    "test:visual": "playwright test tests/non-functional/visual-regression.spec.ts",
+    "test:visual:update": "playwright test tests/non-functional/visual-regression.spec.ts --update-snapshots",
+    "test:staging": "cross-env TEST_ENV=staging playwright test",
+    "test:prod": "cross-env TEST_ENV=prod playwright test",
     "test:headed": "playwright test --headed",
     "test:ui": "playwright test --ui",
     "report": "playwright show-report",
@@ -20,9 +28,12 @@
     "node": ">=24"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.12.1",
     "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.55.0",
     "@types/node": "^24.5.2",
+    "cross-env": "^10.1.0",
+    "dotenv": "^17.4.2",
     "eslint": "^10.7.0",
     "eslint-plugin-playwright": "^2.10.5",
     "prettier": "^3.6.2",

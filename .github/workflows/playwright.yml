@@ -5,6 +5,17 @@ on:
     branches: [main, develop]
   pull_request:
     branches: [main, develop]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Target Environment"
+        required: true
+        default: "staging"
+        type: choice
+        options:
+          - staging
+          - prod
+          - local
 
 permissions:
   contents: read
@@ -15,6 +26,11 @@ jobs:
   test:
     timeout-minutes: 10
     runs-on: ubuntu-latest
+    env:
+      TEST_ENV: ${{ inputs.environment || 'staging' }}
+      BASE_URL: ${{ vars.BASE_URL || 'https://www.saucedemo.com' }}
+      TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
+      STANDARD_USER: ${{ secrets.STANDARD_USER }}
 
     steps:
       - uses: actions/checkout@v4
