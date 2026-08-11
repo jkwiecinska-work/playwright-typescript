@@ -20,3 +20,11 @@ dist/
 # Logs
 *.log
 npm-debug.log*
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# AI Agent Config (Local instructions)
+.agents/

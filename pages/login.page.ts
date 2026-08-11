@@ -33,7 +33,7 @@ export class LoginPage extends BasePage {
 
   /** Navigate to the SauceDemo login page */
   async open(): Promise<void> {
-    await this.goto("https://www.saucedemo.com/");
+    await this.goto("/");
   }
 
   /** Fill in the login form and submit */
@@ -76,6 +76,6 @@ export class LoginPage extends BasePage {
 
   /** Verify that the user remains on the login page */
   async expectOnLoginPage(): Promise<void> {
-    await expect(this.page).toHaveURL("https://www.saucedemo.com/");
+    await expect(this.page).toHaveURL(/(\/$|saucedemo\.com\/?$)/);
   }
 }

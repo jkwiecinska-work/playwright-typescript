@@ -1,75 +1,103 @@
-# Playwright TypeScript Test Automation
+# Playwright TypeScript Test Automation Showcase
 
 [![Playwright Tests](https://github.com/jkwiecinska-work/playwright-typescript/actions/workflows/playwright.yml/badge.svg)](https://github.com/jkwiecinska-work/playwright-typescript/actions/workflows/playwright.yml)
 
-Playground for Playwright and TypeScript testing automation
+Welcome! Having previously built test automation frameworks in **Python**, I created this project to learn **Playwright** and **TypeScript** using the [SauceDemo](https://www.saucedemo.com/) web app.
 
-![Playwright](https://playwright.dev/img/playwright-logo.svg)
-
-> **Web Automation Project**
-> Playwright + TypeScript for scalable testing.
+My goal here is to practice TypeScript, build a clean test framework using solid testing standards, and experiment with AI pair programming along the way.
 
 ---
 
-## Tech Stack
+## 🎯 Key Framework Highlights
 
-- **Node.js**: >= 24
-- [Playwright](https://playwright.dev/) (TypeScript)
-- Page Object Model (POM) with Base Page inheritance
-- Custom Fixtures for dependency injection
-- [ESLint](https://eslint.org/) with [eslint-plugin-playwright](https://github.com/playwright-community/eslint-plugin-playwright)
-- [Prettier](https://prettier.io/) for code formatting
-- CI/CD with GitHub Actions (Test, Lint, Typecheck, Deploy HTML Report to GitHub Pages)
-- Trace reporting on first retry
+Here is how the framework is set up:
+
+- **Page Object Model (POM)**: Locators and page actions live inside `pages/` and `pages/components/`, keeping test files clean and readable.
+- **Custom Playwright Fixtures**: Page objects, logged-in states (`loggedInPage`), and audit tools (`makeAxeBuilder`) are injected via `fixtures/base.fixtures.ts` to avoid repetitive setup code.
+- **Clean Test Organization**:
+  - `tests/e2e/`: Full multi-page user journeys (like completing a purchase order).
+  - `tests/functional/`: Individual page and form validation tests (login, cart, inventory).
+  - `tests/non-functional/`: Accessibility audits (WCAG 2.1 AA via `@axe-core/playwright`), network mocking, and visual regression tests.
+- **Environment Config & Security**: Credentials and environment settings are loaded securely from `.env` files via `config/env.config.ts` without hardcoding sensitive data.
+- **Reliable Locators & Assertions**: Built using Playwright's semantic locators (`getByRole`, `getByText`, `getByTestId`) and web-first async assertions (`await expect(...)`).
 
 ---
 
-## Project Structure
+## 📁 Repository Structure
 
 ```
-├── tests/ # tests (organized by features/modules)
-│ ├── demo-todo-app.spec.ts
-│ └── example.spec.ts
-├── [to do] pages/ # Page Object Model - [to do] page logic, selectors, actions
-│ └── LoginPage.ts
-├── [to do] fixtures/ # Custom reusable fixtures (login, data, tokens, setup)
-├── [to do]utils/ # Helpers, data generators, custom assertions
-├── playwright.config.ts
-├── eslint.config.mjs
-├── .prettierrc
-├── tsconfig.json
-├── package.json
-├── README.md
-└── tsconfig.json
-
+├── config/
+│   └── env.config.ts           # Environment & security config loader
+├── fixtures/
+│   └── base.fixtures.ts        # Custom Playwright fixtures & dependency injection
+├── pages/                      # Page Object Model layer
+│   ├── base.page.ts            # Base page class with common interaction methods
+│   ├── login.page.ts           # Login page object
+│   ├── inventory.page.ts       # Product catalog page object
+│   ├── cart.page.ts            # Shopping cart page object
+│   ├── checkout.page.ts        # Checkout process page object
+│   └── components/
+│       └── header.component.ts  # Navigation header component
+├── test-data/                  # Static test data & catalog constants
+├── tests/                      # Categorized test specs
+│   ├── e2e/                    # End-to-end user journeys
+│   ├── functional/             # Functional UI & form validation specs
+│   └── non-functional/         # Accessibility, network resilience, & visual regression
+└── utils/                      # Network interception & latency helpers
 ```
 
 ---
 
-## How to Run Locally
+## 🚀 Getting Started
 
-1. Clone this repo:
+### 1. Installation
 
-2. Install dependencies:
-   npm install
+```bash
+git clone https://github.com/jkwiecinska-work/playwright-typescript.git
+cd playwright-typescript
+npm install
+```
 
-3. Run test suite:
-   npx playwright test
+### 2. Environment Setup
 
-4. Open the HTML test report:
-   npx playwright show-report
+Copy the template environment file to `.env`:
+
+```bash
+cp .env.example .env
+```
+
+### 3. Execution Commands
+
+```bash
+# Run all tests (headless across Chromium, Firefox, WebKit)
+npm test
+
+# Run tests in interactive UI mode
+npm run test:ui
+
+# Run critical smoke tests
+npm run test:smoke
+
+# Run specific test suites
+npm run test:e2e        # E2E purchase flow
+npm run test:functional # Functional specs
+npm run test:a11y        # Accessibility (WCAG 2.1 AA) audits
+npm run test:network     # Network mocking & throttling tests
+npm run test:visual      # Visual regression tests
+
+# Code quality & type safety
+npm run typecheck       # TypeScript static type check (tsc --noEmit)
+npm run lint            # ESLint code style check
+```
 
 ---
 
-## Key Best Practices
+## 📊 CI/CD & HTML Reporting
 
-- **Page Object Pattern:** Separation between page logic & test flows
-- **Custom Fixtures:** Dependency injection of page objects into tests
-- **Readable code:** Descriptive test & method names, modular approach
-- **No hard waits:** Leverage Playwright built-in auto-wait
-- **Stateless tests:** Independent cases, easy parallelization
-- **Artifacts on fail:** Automatic trace on first retry
-- **CI-friendly:** GitHub Actions pipeline with lint, typecheck & test stages
-- **Automated Reporting:** Playwright HTML report is automatically deployed to GitHub Pages from the `main` branch
+This repository includes a GitHub Actions pipeline (`.github/workflows/playwright.yml`) that automatically runs linting, type checks, and tests on every push and pull request.
 
----
+To view the generated Playwright HTML report locally after running tests:
+
+```bash
+npm run report
+```
