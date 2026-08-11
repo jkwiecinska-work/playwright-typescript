@@ -1,104 +1,102 @@
-# Playwright TypeScript Testing Framework
+# Playwright TypeScript Test Automation Showcase
 
 [![Playwright Tests](https://github.com/jkwiecinska-work/playwright-typescript/actions/workflows/playwright.yml/badge.svg)](https://github.com/jkwiecinska-work/playwright-typescript/actions/workflows/playwright.yml)
 
-End-to-end test automation framework built with **Playwright** and **TypeScript**, targeting the [SauceDemo](https://www.saucedemo.com/) web application.
+Welcome! Having previously built test automation frameworks in **Python**, I created this project to learn **Playwright** and **TypeScript** using the [SauceDemo](https://www.saucedemo.com/) web app.
 
-This repository demonstrates modern test automation practices including Page Object Model (POM), custom fixtures for dependency injection, accessibility auditing (`@axe-core/playwright`), network mocking, visual regression testing, and multi-environment configuration.
-
----
-
-## Prerequisites
-
-- **Node.js**: `v22` or `v24` (LTS recommended)
-- **npm**: `v10+`
+My goal here is to practice TypeScript, build a clean test framework using solid testing standards, and experiment with AI pair programming along the way.
 
 ---
 
-## Quick Start
+## 🎯 Key Framework Highlights
 
-1. **Clone the repository and install dependencies:**
+Here is how the framework is set up:
 
-   ```bash
-   git clone https://github.com/jkwiecinska-work/playwright-typescript.git
-   cd playwright-typescript
-   npm install
-   ```
-
-2. **Set up environment configuration:**
-   Copy the template environment file to `.env`:
-
-   ```bash
-   cp .env.example .env
-   ```
-
-3. **Run the test suite:**
-   ```bash
-   npm test
-   ```
+- **Page Object Model (POM)**: Locators and page actions live inside `pages/` and `pages/components/`, keeping test files clean and readable.
+- **Custom Playwright Fixtures**: Page objects, logged-in states (`loggedInPage`), and audit tools (`makeAxeBuilder`) are injected via `fixtures/base.fixtures.ts` to avoid repetitive setup code.
+- **Clean Test Organization**:
+  - `tests/e2e/`: Full multi-page user journeys (like completing a purchase order).
+  - `tests/functional/`: Individual page and form validation tests (login, cart, inventory).
+  - `tests/non-functional/`: Accessibility audits (WCAG 2.1 AA via `@axe-core/playwright`), network mocking, and visual regression tests.
+- **Environment Config & Security**: Credentials and environment settings are loaded securely from `.env` files via `config/env.config.ts` without hardcoding sensitive data.
+- **Reliable Locators & Assertions**: Built using Playwright's semantic locators (`getByRole`, `getByText`, `getByTestId`) and web-first async assertions (`await expect(...)`).
 
 ---
 
-## Running Tests & Available Scripts
-
-| Command                      | Description                                                          |
-| :--------------------------- | :------------------------------------------------------------------- |
-| `npm test`                   | Runs all tests in headless mode across Chromium, Firefox, and WebKit |
-| `npm run test:headed`        | Runs tests with visible browser UI                                   |
-| `npm run test:ui`            | Opens Playwright Interactive UI Mode                                 |
-| `npm run test:smoke`         | Runs critical smoke tests (`@smoke` tag)                             |
-| `npm run test:e2e`           | Runs full end-to-end purchase flow specs                             |
-| `npm run test:a11y`          | Runs WCAG 2.1 AA accessibility audits                                |
-| `npm run test:network`       | Runs network interception and latency throttling tests               |
-| `npm run test:visual`        | Runs visual snapshot regression tests                                |
-| `npm run test:visual:update` | Updates baseline visual snapshot images                              |
-| `npm run test:staging`       | Runs tests against staging environment (`.env.staging`)              |
-| `npm run test:prod`          | Runs tests against production environment (`.env.prod`)              |
-| `npm run typecheck`          | Checks TypeScript types (`tsc --noEmit`)                             |
-| `npm run lint`               | Runs ESLint checks across the repository                             |
-| `npm run report`             | Opens the HTML test report in your default browser                   |
-
----
-
-## Project Structure
+## 📁 Repository Structure
 
 ```
 ├── config/
-│   └── env.config.ts          # Central environment config & credentials loader
+│   └── env.config.ts           # Environment & security config loader
 ├── fixtures/
-│   └── base.fixtures.ts       # Extended Playwright fixtures (POM, auth, axeBuilder)
-├── pages/                     # Page Object Model layer
-│   ├── base.page.ts           # Base page class with common interaction methods
-│   ├── login.page.ts          # Login page object
-│   ├── inventory.page.ts      # Product catalog page object
-│   ├── cart.page.ts           # Shopping cart page object
-│   ├── checkout.page.ts       # Checkout process page object
+│   └── base.fixtures.ts        # Custom Playwright fixtures & dependency injection
+├── pages/                      # Page Object Model layer
+│   ├── base.page.ts            # Base page class with common interaction methods
+│   ├── login.page.ts           # Login page object
+│   ├── inventory.page.ts       # Product catalog page object
+│   ├── cart.page.ts            # Shopping cart page object
+│   ├── checkout.page.ts        # Checkout process page object
 │   └── components/
-│       └── header.component.ts # Navigation header component
-├── test-data/                 # Static data constants (users, products)
-├── tests/                     # Categorized test specs
-│   ├── e2e/                   # Multi-page user flows (checkout journey)
-│   ├── functional/            # Page & feature functional tests (login, cart, inventory)
-│   └── non-functional/        # Specialized audits (accessibility, visual, network)
-└── utils/                     # Utility helpers (network interception, throttling)
+│       └── header.component.ts  # Navigation header component
+├── test-data/                  # Static test data & catalog constants
+├── tests/                      # Categorized test specs
+│   ├── e2e/                    # End-to-end user journeys
+│   ├── functional/             # Functional UI & form validation specs
+│   └── non-functional/         # Accessibility, network resilience, & visual regression
+└── utils/                      # Network interception & latency helpers
 ```
 
 ---
 
-## Core Practices
+## 🚀 Getting Started
 
-- **Page Object Model (POM)**: Element locators and page actions belong inside page classes in `pages/` or components in `pages/components/`, never directly in spec files.
-- **Dependency Injection**: Custom fixtures in `fixtures/base.fixtures.ts` inject page objects into test functions and provide pre-authenticated states (`loggedInPage`).
-- **Semantic Locators**: Tests prioritize Playwright semantic locators (`getByTestId`, `getByRole`, `getByText`) over CSS or XPath.
-- **Multi-Environment Setup**: Environment configuration is managed via `config/env.config.ts` supporting `.env`, `.env.staging`, and `.env.prod`.
+### 1. Installation
+
+```bash
+git clone https://github.com/jkwiecinska-work/playwright-typescript.git
+cd playwright-typescript
+npm install
+```
+
+### 2. Environment Setup
+
+Copy the template environment file to `.env`:
+
+```bash
+cp .env.example .env
+```
+
+### 3. Execution Commands
+
+```bash
+# Run all tests (headless across Chromium, Firefox, WebKit)
+npm test
+
+# Run tests in interactive UI mode
+npm run test:ui
+
+# Run critical smoke tests
+npm run test:smoke
+
+# Run specific test suites
+npm run test:e2e        # E2E purchase flow
+npm run test:functional # Functional specs
+npm run test:a11y        # Accessibility (WCAG 2.1 AA) audits
+npm run test:network     # Network mocking & throttling tests
+npm run test:visual      # Visual regression tests
+
+# Code quality & type safety
+npm run typecheck       # TypeScript static type check (tsc --noEmit)
+npm run lint            # ESLint code style check
+```
 
 ---
 
-## CI/CD & Reporting
+## 📊 CI/CD & HTML Reporting
 
-Tests automatically run on GitHub Actions on every pull request and push to `main` / `develop`.
+This repository includes a GitHub Actions pipeline (`.github/workflows/playwright.yml`) that automatically runs linting, type checks, and tests on every push and pull request.
 
-View HTML test reports after running tests:
+To view the generated Playwright HTML report locally after running tests:
 
 ```bash
 npm run report

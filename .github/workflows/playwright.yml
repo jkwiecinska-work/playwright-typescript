@@ -27,7 +27,6 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     env:
-      TEST_ENV: ${{ inputs.environment || 'staging' }}
       BASE_URL: ${{ vars.BASE_URL || 'https://www.saucedemo.com' }}
       TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
       STANDARD_USER: ${{ secrets.STANDARD_USER }}
