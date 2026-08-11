@@ -8,14 +8,7 @@ test.describe("SauceDemo Accessibility Audits (WCAG 2.1 AA)", { tag: "@a11y" }, 
     await loginPage.open();
     const results = await makeAxeBuilder().analyze();
 
-    if (results.violations.length > 0) {
-      console.log(
-        `Login Page A11y Violations (${results.violations.length}):`,
-        results.violations.map((v) => ({ id: v.id, impact: v.impact, description: v.description }))
-      );
-    }
-
-    expect(results.violations).toEqual([]);
+    expect(results.violations, "Login Page has accessibility violations").toEqual([]);
   });
 
   test("audits Inventory Catalog accessibility", async ({ loggedInPage, makeAxeBuilder }) => {
@@ -25,14 +18,7 @@ test.describe("SauceDemo Accessibility Audits (WCAG 2.1 AA)", { tag: "@a11y" }, 
       .disableRules(["color-contrast", "select-name"])
       .analyze();
 
-    if (results.violations.length > 0) {
-      console.log(
-        `Inventory Page A11y Violations (${results.violations.length}):`,
-        results.violations.map((v) => ({ id: v.id, impact: v.impact, description: v.description }))
-      );
-    }
-
-    expect(results.violations).toEqual([]);
+    expect(results.violations, "Inventory Page has accessibility violations").toEqual([]);
   });
 
   test("audits Shopping Cart View accessibility", async ({
@@ -45,14 +31,7 @@ test.describe("SauceDemo Accessibility Audits (WCAG 2.1 AA)", { tag: "@a11y" }, 
 
     const results = await makeAxeBuilder().analyze();
 
-    if (results.violations.length > 0) {
-      console.log(
-        `Cart Page A11y Violations (${results.violations.length}):`,
-        results.violations.map((v) => ({ id: v.id, impact: v.impact, description: v.description }))
-      );
-    }
-
-    expect(results.violations).toEqual([]);
+    expect(results.violations, "Cart Page has accessibility violations").toEqual([]);
   });
 
   test("audits Checkout Information Form accessibility", async ({
@@ -67,13 +46,6 @@ test.describe("SauceDemo Accessibility Audits (WCAG 2.1 AA)", { tag: "@a11y" }, 
 
     const results = await makeAxeBuilder().analyze();
 
-    if (results.violations.length > 0) {
-      console.log(
-        `Checkout Page A11y Violations (${results.violations.length}):`,
-        results.violations.map((v) => ({ id: v.id, impact: v.impact, description: v.description }))
-      );
-    }
-
-    expect(results.violations).toEqual([]);
+    expect(results.violations, "Checkout Page has accessibility violations").toEqual([]);
   });
 });
