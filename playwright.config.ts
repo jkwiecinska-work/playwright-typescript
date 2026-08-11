@@ -6,7 +6,7 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  workers: process.env.CI ? 2 : undefined,
   reporter: "html",
   snapshotPathTemplate: "{testDir}/{testFileDir}/{testFileName}-snapshots/{arg}-{projectName}{ext}",
   expect: {
@@ -22,7 +22,7 @@ export default defineConfig({
     trace: "on-first-retry",
     testIdAttribute: "data-test",
     launchOptions: {
-      slowMo: process.env.SLOWMO ? parseInt(process.env.SLOWMO, 10) : 1000, // 1s delay - preview for presentation
+      slowMo: process.env.SLOWMO ? parseInt(process.env.SLOWMO, 10) : 0, //1000 for 1s delay
     },
   },
 
