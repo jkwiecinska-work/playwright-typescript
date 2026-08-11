@@ -1,23 +1,31 @@
 import dotenv from "dotenv";
-import path from "path";
 
-// Determine current test environment (default: 'local')
 export const TEST_ENV = process.env.TEST_ENV || "local";
 
-// Load environment-specific file if present (.env.staging, .env.prod, etc.), fallback to .env
-dotenv.config({ path: path.resolve(process.cwd(), `.env.${TEST_ENV}`) });
+dotenv.config({ path: `.env.${TEST_ENV}` });
 dotenv.config();
+
+const getEnvVar = (key: string): string => {
+  const value = process.env[key];
+  if (!value) {
+    throw new Error(
+      `[Config Error] Wymagana zmienna środowiskowa '${key}' nie została zdefiniowana. ` +
+        `Upewnij się, że plik .env zawiera wpis dla '${key}'.`
+    );
+  }
+  return value;
+};
 
 export const config = {
   env: TEST_ENV,
   baseUrl: process.env.BASE_URL || "https://www.saucedemo.com",
   credentials: {
-    password: process.env.TEST_PASSWORD || "secret_sauce",
-    standardUser: process.env.STANDARD_USER || "standard_user",
-    lockedOutUser: process.env.LOCKED_OUT_USER || "locked_out_user",
-    problemUser: process.env.PROBLEM_USER || "problem_user",
-    performanceGlitchUser: process.env.PERFORMANCE_GLITCH_USER || "performance_glitch_user",
-    errorUser: process.env.ERROR_USER || "error_user",
-    visualUser: process.env.VISUAL_USER || "visual_user",
+    password: getEnvVar("TEST_PASSWORD"),
+    standardUser: getEnvVar("STANDARD_USER"),
+    lockedOutUser: getEnvVar("LOCKED_OUT_USER"),
+    problemUser: getEnvVar("PROBLEM_USER"),
+    performanceGlitchUser: getEnvVar("PERFORMANCE_GLITCH_USER"),
+    errorUser: getEnvVar("ERROR_USER"),
+    visualUser: getEnvVar("VISUAL_USER"),
   },
 } as const;

@@ -37,7 +37,7 @@ test.describe("SauceDemo Login Functional Tests", { tag: "@login" }, () => {
 
   test.describe("Login Form Validations & Error Handling", { tag: "@regression" }, () => {
     test("shows error banner for locked out user", async ({ loginPage }) => {
-      await loginPage.login("locked_out_user", VALID_PASSWORD);
+      await loginPage.login(USERS.LOCKED_OUT.username, VALID_PASSWORD);
       await loginPage.expectErrorMessage("Sorry, this user has been locked out");
     });
 

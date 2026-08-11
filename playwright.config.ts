@@ -21,6 +21,9 @@ export default defineConfig({
     baseURL: config.baseUrl,
     trace: "on-first-retry",
     testIdAttribute: "data-test",
+    launchOptions: {
+      slowMo: process.env.SLOWMO ? parseInt(process.env.SLOWMO, 10) : 1000, // 1s delay - preview for presentation
+    },
   },
 
   projects: [
