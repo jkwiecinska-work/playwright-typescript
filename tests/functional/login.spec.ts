@@ -28,9 +28,9 @@ test.describe("SauceDemo Login Functional Tests", { tag: "@login" }, () => {
     test(
       "redirects user to inventory catalog on valid credentials",
       { tag: "@smoke" },
-      async ({ loginPage }) => {
+      async ({ loginPage, inventoryPage }) => {
         await loginPage.login(VALID_USERNAME, VALID_PASSWORD);
-        await loginPage.expectSuccessfulLogin();
+        await inventoryPage.expectLoaded();
       }
     );
   });

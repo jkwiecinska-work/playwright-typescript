@@ -69,11 +69,6 @@ export class LoginPage extends BasePage {
     await expect(this.errorMessage).toBeHidden();
   }
 
-  /** Verify that the user has been redirected to the inventory page after login */
-  async expectSuccessfulLogin(): Promise<void> {
-    await expect(this.page).toHaveURL(/inventory\.html/);
-  }
-
   /** Verify that the user remains on the login page */
   async expectOnLoginPage(): Promise<void> {
     await expect(this.page).toHaveURL(/(\/$|saucedemo\.com\/?$)/);

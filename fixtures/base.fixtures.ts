@@ -5,7 +5,9 @@ import { LoginPage } from "../pages/login.page";
 import { InventoryPage } from "../pages/inventory.page";
 import { CartPage } from "../pages/cart.page";
 import { CheckoutPage } from "../pages/checkout.page";
+import { ProductDetailsPage } from "../pages/product-details.page";
 import { USERS } from "../test-data/users.data";
+import { NetworkHelper } from "../utils/network.helper";
 
 /**
  * Custom test fixtures for Playwright test automation framework.
@@ -21,6 +23,8 @@ type PageFixtures = {
   cartPage: CartPage;
   checkoutPage: CheckoutPage;
   loggedInPage: InventoryPage;
+  productDetailsPage: ProductDetailsPage;
+  networkHelper: NetworkHelper;
   makeAxeBuilder: () => AxeBuilder;
 };
 
@@ -43,6 +47,14 @@ export const test = base.extend<PageFixtures>({
 
   checkoutPage: async ({ page }, use) => {
     await use(new CheckoutPage(page));
+  },
+
+  productDetailsPage: async ({ page }, use) => {
+    await use(new ProductDetailsPage(page));
+  },
+
+  networkHelper: async ({ page }, use) => {
+    await use(new NetworkHelper(page));
   },
 
   /**

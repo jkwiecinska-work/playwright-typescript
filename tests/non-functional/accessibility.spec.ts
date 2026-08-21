@@ -7,7 +7,6 @@ test.describe("SauceDemo Accessibility Audits (WCAG 2.1 AA)", { tag: "@a11y" }, 
   test("audits Login Page accessibility", async ({ loginPage, makeAxeBuilder }) => {
     await loginPage.open();
     const results = await makeAxeBuilder().analyze();
-
     expect(results.violations, "Login Page has accessibility violations").toEqual([]);
   });
 

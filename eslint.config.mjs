@@ -10,8 +10,8 @@ export default tseslint.config(
     files: ["tests/**/*.ts"],
     rules: {
       ...playwright.configs["flat/recommended"].rules,
-      // Disabled: this rule cannot trace assertions inside Page Object methods
-      // (e.g. loginPage.expectErrorMessage()). All our assertions live in POM classes.
+      // Disabled because rule cannot trace assertions inside Page Object methods
+      // (e.g. loginPage.expectErrorMessage()) - assertions live in POM classes
       "playwright/expect-expect": "off",
     },
   },

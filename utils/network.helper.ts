@@ -2,6 +2,7 @@ import { Page, Route } from "@playwright/test";
 
 /**
  * Network Helper - Utility class for network mocking, route interception, and latency throttling
+ * Created with documentation https://playwright.dev/docs/network
  */
 export class NetworkHelper {
   readonly page: Page;
