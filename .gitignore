@@ -26,5 +26,5 @@ npm-debug.log*
 .env.*
 !.env.example
 
-# AI Agent Config (Local instructions)
+# Local instructions for agents
 .agents/

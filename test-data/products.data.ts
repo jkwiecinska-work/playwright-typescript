@@ -36,3 +36,5 @@ export const PRODUCTS = {
     descriptionSnippet: "This classic Sauce Labs t-shirt",
   },
 } as const;
+
+export const TOTAL_PRODUCTS_COUNT = Object.keys(PRODUCTS).length;

@@ -1,6 +1,7 @@
 import { Locator, Page, expect } from "@playwright/test";
 import { BasePage } from "./base.page";
 import { HeaderComponent } from "./components/header.component";
+import { TOTAL_PRODUCTS_COUNT } from "../test-data/products.data";
 
 export type SortOption = "az" | "za" | "lohi" | "hilo";
 
@@ -54,14 +55,14 @@ export class InventoryPage extends BasePage {
 
   // --- Assertions ---
 
-  /** Verify page title and URL */
+  /** Verify page title and URL after user logs in */
   async expectLoaded(): Promise<void> {
     await expect(this.page).toHaveURL(/inventory\.html/);
     await expect(this.pageTitle).toHaveText("Products");
   }
 
   /** Verify number of items displayed */
-  async expectItemCount(expectedCount: number): Promise<void> {
+  async expectItemCount(expectedCount: number = TOTAL_PRODUCTS_COUNT): Promise<void> {
     await expect(this.inventoryItems).toHaveCount(expectedCount);
   }
 
